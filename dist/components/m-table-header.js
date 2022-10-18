@@ -6,6 +6,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true,
 });
 exports.styles = exports["default"] = exports.MTableHeader = void 0;
+var _objectWithoutProperties2 = _interopRequireDefault(
+  require("@babel/runtime/helpers/objectWithoutProperties")
+);
 var _extends2 = _interopRequireDefault(
   require("@babel/runtime/helpers/extends")
 );
@@ -48,6 +51,36 @@ var _withStyles = _interopRequireDefault(
 var _reactBeautifulDnd = require("react-beautiful-dnd");
 var _core = require("@material-ui/core");
 var CommonValues = _interopRequireWildcard(require("../utils/common-values"));
+var _excluded = [
+  "actions",
+  "classes",
+  "columns",
+  "grouping",
+  "icons",
+  "isTreeData",
+  "onColumnResized",
+  "scrollWidth",
+  "theme",
+  "treeDataMaxLevel",
+  "options",
+  "dataCount",
+  "hasDetailPanel",
+  "detailPanelColumnAlignment",
+  "hasSelection",
+  "headerStyle",
+  "localization",
+  "selectedCount",
+  "sorting",
+  "onAllSelected",
+  "onOrderChange",
+  "orderBy",
+  "orderDirection",
+  "actionsHeaderIndex",
+  "showActionsColumn",
+  "showSelectAllCheckbox",
+  "thirdSortClick",
+  "tooltip",
+];
 function _getRequireWildcardCache(nodeInterop) {
   if (typeof WeakMap !== "function") return null;
   var cacheBabelInterop = new WeakMap();
@@ -456,6 +489,39 @@ function _isNativeReflectConstruct() {
         // console.log(log);
         // console.log("===============================");
 
+        var _this$props = this.props,
+          actions = _this$props.actions,
+          classes = _this$props.classes,
+          columns = _this$props.columns,
+          grouping = _this$props.grouping,
+          icons = _this$props.icons,
+          isTreeData = _this$props.isTreeData,
+          onColumnResized = _this$props.onColumnResized,
+          scrollWidth = _this$props.scrollWidth,
+          theme = _this$props.theme,
+          treeDataMaxLevel = _this$props.treeDataMaxLevel,
+          options = _this$props.options,
+          dataCount = _this$props.dataCount,
+          hasDetailPanel = _this$props.hasDetailPanel,
+          detailPanelColumnAlignment = _this$props.detailPanelColumnAlignment,
+          hasSelection = _this$props.hasSelection,
+          headerStyle = _this$props.headerStyle,
+          localization = _this$props.localization,
+          selectedCount = _this$props.selectedCount,
+          sorting = _this$props.sorting,
+          onAllSelected = _this$props.onAllSelected,
+          onOrderChange = _this$props.onOrderChange,
+          orderBy = _this$props.orderBy,
+          orderDirection = _this$props.orderDirection,
+          actionsHeaderIndex = _this$props.actionsHeaderIndex,
+          showActionsColumn = _this$props.showActionsColumn,
+          showSelectAllCheckbox = _this$props.showSelectAllCheckbox,
+          thirdSortClick = _this$props.thirdSortClick,
+          tooltip = _this$props.tooltip,
+          headerProps = (0, _objectWithoutProperties2["default"])(
+            _this$props,
+            _excluded
+          );
         var headers = this.renderHeader();
         if (this.props.hasSelection) {
           headers.splice(0, 0, this.renderSelectionHeader());
@@ -511,7 +577,7 @@ function _isNativeReflectConstruct() {
           });
         return /*#__PURE__*/ React.createElement(
           _TableHead["default"],
-          null,
+          headerProps,
           /*#__PURE__*/ React.createElement(_TableRow["default"], null, headers)
         );
       },

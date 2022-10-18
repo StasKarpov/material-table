@@ -285,6 +285,38 @@ export class MTableHeader extends React.Component {
     // console.log(log);
     // console.log("===============================");
 
+    const {
+      actions,
+      classes,
+      columns,
+      grouping,
+      icons,
+      isTreeData,
+      onColumnResized,
+      scrollWidth,
+      theme,
+      treeDataMaxLevel,
+      options,
+      dataCount,
+      hasDetailPanel,
+      detailPanelColumnAlignment,
+      hasSelection,
+      headerStyle,
+      localization,
+      selectedCount,
+      sorting,
+      onAllSelected,
+      onOrderChange,
+      orderBy,
+      orderDirection,
+      actionsHeaderIndex,
+      showActionsColumn,
+      showSelectAllCheckbox,
+      thirdSortClick,
+      tooltip,
+      ...headerProps
+    } = this.props;
+
     const headers = this.renderHeader();
     if (this.props.hasSelection) {
       headers.splice(0, 0, this.renderSelectionHeader());
@@ -342,7 +374,7 @@ export class MTableHeader extends React.Component {
       });
 
     return (
-      <TableHead>
+      <TableHead {...headerProps}>
         <TableRow>{headers}</TableRow>
       </TableHead>
     );

@@ -2,7 +2,7 @@ import { Grid, MuiThemeProvider, Button } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import MaterialTable from "../src";
+import MaterialTable, { MTableHeader } from "../src";
 import Typography from "@material-ui/core/Typography";
 
 let direction = "ltr";
@@ -488,6 +488,9 @@ class App extends Component {
                   title="Demo Title"
                   onFilterChange={(appliedFilter) => {
                     console.log("selected Filters : ", appliedFilter);
+                  }}
+                  components={{
+                    Header: (props) => <MTableHeader id="test" {...props} />,
                   }}
                   // cellEditable={{
                   //   cellStyle: {},
