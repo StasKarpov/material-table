@@ -93,7 +93,8 @@ export default class DataManager {
 
     usedWidth = "(" + usedWidth.join(" + ") + ")";
     undefinedWidthColumns.forEach((columnDef) => {
-      columnDef.tableData.width = columnDef.tableData.initialWidth = `calc((100% - ${usedWidth}) / ${undefinedWidthColumns.length})`;
+      columnDef.tableData.width =
+        columnDef.tableData.initialWidth = `calc((100% - ${usedWidth}) / ${undefinedWidthColumns.length})`;
     });
   }
 
@@ -511,7 +512,11 @@ export default class DataManager {
       typeof rowData[columnDef.field] !== "undefined"
         ? rowData[columnDef.field]
         : byString(rowData, columnDef.field);
-    if (columnDef.lookup && lookup) {
+
+    if (columnDef.lookup && lookup && Array.isArray(value)) {
+      //supporting array values
+      value = value.map((v) => columnDef.lookup[v]);
+    } else if (columnDef.lookup && lookup) {
       value = columnDef.lookup[value];
     }
 
@@ -622,7 +627,12 @@ export default class DataManager {
   // =====================================================================================================
 
   filterData = () => {
-    this.searched = this.grouped = this.treefied = this.sorted = this.paged = false;
+    this.searched =
+      this.grouped =
+      this.treefied =
+      this.sorted =
+      this.paged =
+        false;
 
     this.filteredData = [...this.data];
 

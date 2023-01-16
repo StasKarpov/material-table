@@ -171,7 +171,12 @@ var DataManager = /*#__PURE__*/ (function () {
           typeof rowData[columnDef.field] !== "undefined"
             ? rowData[columnDef.field]
             : (0, _2.byString)(rowData, columnDef.field);
-        if (columnDef.lookup && lookup) {
+        if (columnDef.lookup && lookup && Array.isArray(value)) {
+          //supporting array values
+          value = value.map(function (v) {
+            return columnDef.lookup[v];
+          });
+        } else if (columnDef.lookup && lookup) {
           value = columnDef.lookup[value];
         }
         return value;
