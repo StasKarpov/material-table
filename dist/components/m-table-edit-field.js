@@ -6,6 +6,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true,
 });
 exports["default"] = void 0;
+var _objectSpread2 = _interopRequireDefault(
+  require("@babel/runtime/helpers/objectSpread")
+);
 var _extends2 = _interopRequireDefault(
   require("@babel/runtime/helpers/extends")
 );
@@ -355,9 +358,10 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
       key: "renderTextField",
       value: function renderTextField() {
         var _this3 = this;
+        var thisProps = this.getProps();
         return /*#__PURE__*/ React.createElement(
           _TextField["default"],
-          (0, _extends2["default"])({}, this.getProps(), {
+          (0, _extends2["default"])({}, thisProps, {
             fullWidth: true,
             style:
               this.props.columnDef.type === "numeric"
@@ -381,9 +385,12 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
               style: {
                 fontSize: 13,
               },
-              inputProps: {
-                "aria-label": this.props.columnDef.title,
-              },
+              inputProps: (0, _objectSpread2["default"])(
+                {
+                  "aria-label": this.props.columnDef.title,
+                },
+                thisProps.inputProps
+              ),
             },
           })
         );
