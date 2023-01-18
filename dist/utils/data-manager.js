@@ -174,10 +174,10 @@ var DataManager = /*#__PURE__*/ (function () {
         if (columnDef.lookup && lookup && Array.isArray(value)) {
           //supporting array values
           value = value.map(function (v) {
-            return columnDef.lookup[v];
+            return columnDef.lookup[v] || v;
           });
         } else if (columnDef.lookup && lookup) {
-          value = columnDef.lookup[value];
+          value = columnDef.lookup[value] || value;
         }
         return value;
       }

@@ -515,9 +515,9 @@ export default class DataManager {
 
     if (columnDef.lookup && lookup && Array.isArray(value)) {
       //supporting array values
-      value = value.map((v) => columnDef.lookup[v]);
+      value = value.map((v) => columnDef.lookup[v] || v);
     } else if (columnDef.lookup && lookup) {
-      value = columnDef.lookup[value];
+      value = columnDef.lookup[value] || value;
     }
 
     return value;
