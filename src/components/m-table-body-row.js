@@ -140,7 +140,11 @@ export default class MTableBodyRow extends React.Component {
           onClick={(e) => e.stopPropagation()}
           value={this.props.data.tableData.id.toString()}
           onChange={(event) =>
-            this.props.onRowSelected(event, this.props.path, this.props.data)
+            this.props.onRowSelected(
+              event,
+              [this.props.index], //originaly it was path instead of [this.props.index] but it is empty for unknown reason so changed to this by Stas Karpov
+              this.props.data
+            )
           }
           style={styles}
           {...checkboxProps}

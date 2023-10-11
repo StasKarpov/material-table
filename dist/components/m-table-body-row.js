@@ -332,7 +332,8 @@ function _isNativeReflectConstruct() {
                 onChange: function onChange(event) {
                   return _this3.props.onRowSelected(
                     event,
-                    _this3.props.path,
+                    [_this3.props.index],
+                    //originaly it was path instead of [this.props.index] but it is empty for unknown reason so changed to this by Stas Karpov
                     _this3.props.data
                   );
                 },
