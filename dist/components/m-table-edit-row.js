@@ -22,17 +22,14 @@ var _classCallCheck2 = _interopRequireDefault(
 var _createClass2 = _interopRequireDefault(
   require("@babel/runtime/helpers/createClass")
 );
-var _assertThisInitialized2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/assertThisInitialized")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
 var _possibleConstructorReturn2 = _interopRequireDefault(
   require("@babel/runtime/helpers/possibleConstructorReturn")
 );
 var _getPrototypeOf2 = _interopRequireDefault(
   require("@babel/runtime/helpers/getPrototypeOf")
+);
+var _inherits2 = _interopRequireDefault(
+  require("@babel/runtime/helpers/inherits")
 );
 var _defineProperty2 = _interopRequireDefault(
   require("@babel/runtime/helpers/defineProperty")
@@ -66,117 +63,84 @@ var _excluded = ["editComponent"],
     "errorState",
     "onBulkEditRowChanged",
   ];
-function _getRequireWildcardCache(nodeInterop) {
-  if (typeof WeakMap !== "function") return null;
-  var cacheBabelInterop = new WeakMap();
-  var cacheNodeInterop = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(
-    nodeInterop
-  ) {
-    return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
-  })(nodeInterop);
+function _getRequireWildcardCache(e) {
+  if ("function" != typeof WeakMap) return null;
+  var r = new WeakMap(),
+    t = new WeakMap();
+  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+    return e ? t : r;
+  })(e);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
-  if (!nodeInterop && obj && obj.__esModule) {
-    return obj;
-  }
-  if (
-    obj === null ||
-    (_typeof3(obj) !== "object" && typeof obj !== "function")
-  ) {
-    return { default: obj };
-  }
-  var cache = _getRequireWildcardCache(nodeInterop);
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-  var newObj = {};
-  var hasPropertyDescriptor =
-    Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var key in obj) {
-    if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor
-        ? Object.getOwnPropertyDescriptor(obj, key)
-        : null;
-      if (desc && (desc.get || desc.set)) {
-        Object.defineProperty(newObj, key, desc);
-      } else {
-        newObj[key] = obj[key];
-      }
+function _interopRequireWildcard(e, r) {
+  if (!r && e && e.__esModule) return e;
+  if (null === e || ("object" != _typeof3(e) && "function" != typeof e))
+    return { default: e };
+  var t = _getRequireWildcardCache(r);
+  if (t && t.has(e)) return t.get(e);
+  var n = { __proto__: null },
+    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+  for (var u in e)
+    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
+      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
     }
-  }
-  newObj["default"] = obj;
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-  return newObj;
+  return (n["default"] = e), t && t.set(e, n), n;
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = (0, _getPrototypeOf2["default"])(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return (0, _possibleConstructorReturn2["default"])(this, result);
-  };
+function _callSuper(t, o, e) {
+  return (
+    (o = (0, _getPrototypeOf2["default"])(o)),
+    (0, _possibleConstructorReturn2["default"])(
+      t,
+      _isNativeReflectConstruct()
+        ? Reflect.construct(
+            o,
+            e || [],
+            (0, _getPrototypeOf2["default"])(t).constructor
+          )
+        : o.apply(t, e)
+    )
+  );
 }
 function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
   try {
-    Boolean.prototype.valueOf.call(
+    var t = !Boolean.prototype.valueOf.call(
       Reflect.construct(Boolean, [], function () {})
     );
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-/* eslint-enable no-unused-vars */ var MTableEditRow = /*#__PURE__*/ (function (
+  } catch (t) {}
+  return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
+    return !!t;
+  })();
+} /* eslint-disable no-unused-vars */
+/* eslint-enable no-unused-vars */
+var MTableEditRow = (exports["default"] = /*#__PURE__*/ (function (
   _React$Component
 ) {
-  (0, _inherits2["default"])(MTableEditRow, _React$Component);
-  var _super = _createSuper(MTableEditRow);
   function MTableEditRow(props) {
     var _this;
     (0, _classCallCheck2["default"])(this, MTableEditRow);
-    _this = _super.call(this, props);
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "handleSave",
-      function () {
-        var newData = _this.state.data;
-        delete newData.tableData;
-        _this.props.onEditingApproved(
-          _this.props.mode,
-          _this.state.data,
-          _this.props.data
-        );
+    _this = _callSuper(this, MTableEditRow, [props]);
+    (0, _defineProperty2["default"])(_this, "handleSave", function () {
+      var newData = _this.state.data;
+      delete newData.tableData;
+      _this.props.onEditingApproved(
+        _this.props.mode,
+        _this.state.data,
+        _this.props.data
+      );
+    });
+    (0, _defineProperty2["default"])(_this, "handleKeyDown", function (e) {
+      if (e.keyCode === 13 && e.target.type !== "textarea") {
+        _this.handleSave();
+      } else if (
+        e.keyCode === 13 &&
+        e.target.type === "textarea" &&
+        e.shiftKey
+      ) {
+        _this.handleSave();
+      } else if (e.keyCode === 27) {
+        _this.props.onEditingCanceled(_this.props.mode, _this.props.data);
       }
-    );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "handleKeyDown",
-      function (e) {
-        if (e.keyCode === 13 && e.target.type !== "textarea") {
-          _this.handleSave();
-        } else if (
-          e.keyCode === 13 &&
-          e.target.type === "textarea" &&
-          e.shiftKey
-        ) {
-          _this.handleSave();
-        } else if (e.keyCode === 27) {
-          _this.props.onEditingCanceled(_this.props.mode, _this.props.data);
-        }
-      }
-    );
+    });
     _this.state = {
       data: props.data
         ? JSON.parse(JSON.stringify(props.data))
@@ -184,7 +148,8 @@ function _isNativeReflectConstruct() {
     };
     return _this;
   }
-  (0, _createClass2["default"])(MTableEditRow, [
+  (0, _inherits2["default"])(MTableEditRow, _React$Component);
+  return (0, _createClass2["default"])(MTableEditRow, [
     {
       key: "createRowData",
       value: function createRowData() {
@@ -615,9 +580,7 @@ function _isNativeReflectConstruct() {
       },
     },
   ]);
-  return MTableEditRow;
-})(React.Component);
-exports["default"] = MTableEditRow;
+})(React.Component));
 MTableEditRow.defaultProps = {
   actions: [],
   index: 0,

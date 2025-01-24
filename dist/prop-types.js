@@ -13,7 +13,7 @@ var StyledComponent = _propTypes["default"].shape({
   classes: _propTypes["default"].object,
   innerRef: RefComponent,
 });
-var propTypes = {
+var propTypes = (exports.propTypes = {
   actions: _propTypes["default"].arrayOf(
     _propTypes["default"].oneOfType([
       _propTypes["default"].func,
@@ -439,5 +439,4 @@ var propTypes = {
   style: _propTypes["default"].object,
   page: _propTypes["default"].number,
   totalCount: _propTypes["default"].number,
-};
-exports.propTypes = propTypes;
+});

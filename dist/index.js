@@ -56,7 +56,7 @@ var styles = function styles(theme) {
     },
   };
 };
-var _default = (0, _withStyles["default"])(styles, {
+var _default = (exports["default"] = (0, _withStyles["default"])(styles, {
   withTheme: true,
 })(function (props) {
   return /*#__PURE__*/ _react["default"].createElement(
@@ -65,5 +65,4 @@ var _default = (0, _withStyles["default"])(styles, {
       ref: props.tableRef,
     })
   );
-});
-exports["default"] = _default;
+}));

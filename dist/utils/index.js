@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true,
 });
 exports.setByString = exports.byString = void 0;
-var byString = function byString(o, s) {
+var byString = (exports.byString = function byString(o, s) {
   if (!s) {
     return;
   }
@@ -20,9 +20,12 @@ var byString = function byString(o, s) {
     }
   }
   return o;
-};
-exports.byString = byString;
-var setByString = function setByString(obj, path, value) {
+});
+var setByString = (exports.setByString = function setByString(
+  obj,
+  path,
+  value
+) {
   var schema = obj; // a moving reference to internal objects within obj
 
   path = path.replace(/\[(\w+)\]/g, ".$1"); // convert indexes to properties
@@ -35,5 +38,4 @@ var setByString = function setByString(obj, path, value) {
     schema = schema[elem];
   }
   schema[pList[len - 1]] = value;
-};
-exports.setByString = setByString;
+});

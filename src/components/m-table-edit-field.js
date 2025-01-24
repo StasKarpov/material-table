@@ -26,6 +26,7 @@ class MTableEditField extends React.Component {
       onBulkEditRowChanged,
       ...props
     } = this.props;
+
     return props;
   }
 
@@ -182,6 +183,14 @@ class MTableEditField extends React.Component {
           inputProps: {
             "aria-label": this.props.columnDef.title,
             ...thisProps.inputProps,
+          },
+          onFocus: ({ target }) => {
+            if (
+              this.props.columnDef.selectOnFocus &&
+              target.tagName === "INPUT"
+            ) {
+              target.select();
+            }
           },
         }}
       />

@@ -1,4 +1,9 @@
-> :warning: Please do not create pull requests that contains a lot of change. Because we are working on refactoring and testing. Just pull requests that fixes a bug with a few line changes.
+<h1 align="center">clone of material-table for webbokking</h1>
+
+<p> when building the postbuild script will directly copy the dist folder to webbooking project folder to be able to test rapidly.
+<br/>
+Ideally debugging should work with link but there was a versions issues so I decided to stick with this test solution
+ <p>
 
 <br/>
 <br/>
@@ -7,7 +12,7 @@
   <a href="https://material-table.com" rel="noopener" target="_blank" ><img width="200" src="https://raw.githubusercontent.com/mbrn/material-table.com/master/docs/assets/logo-back.png" alt="material-table"></a></p>
 </p>
 
-<h1 align="center">material-table</h1>
+<h1 align="center"></h1>
 
 <div align="center">
 

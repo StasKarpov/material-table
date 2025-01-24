@@ -22,17 +22,14 @@ var _classCallCheck2 = _interopRequireDefault(
 var _createClass2 = _interopRequireDefault(
   require("@babel/runtime/helpers/createClass")
 );
-var _assertThisInitialized2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/assertThisInitialized")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
 var _possibleConstructorReturn2 = _interopRequireDefault(
   require("@babel/runtime/helpers/possibleConstructorReturn")
 );
 var _getPrototypeOf2 = _interopRequireDefault(
   require("@babel/runtime/helpers/getPrototypeOf")
+);
+var _inherits2 = _interopRequireDefault(
+  require("@babel/runtime/helpers/inherits")
 );
 var _defineProperty2 = _interopRequireDefault(
   require("@babel/runtime/helpers/defineProperty")
@@ -56,108 +53,79 @@ var _debounce = require("debounce");
 var _fastDeepEqual = _interopRequireDefault(require("fast-deep-equal"));
 var _core = require("@material-ui/core");
 var CommonValues = _interopRequireWildcard(require("./utils/common-values"));
-function _getRequireWildcardCache(nodeInterop) {
-  if (typeof WeakMap !== "function") return null;
-  var cacheBabelInterop = new WeakMap();
-  var cacheNodeInterop = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(
-    nodeInterop
-  ) {
-    return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
-  })(nodeInterop);
+function _getRequireWildcardCache(e) {
+  if ("function" != typeof WeakMap) return null;
+  var r = new WeakMap(),
+    t = new WeakMap();
+  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+    return e ? t : r;
+  })(e);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
-  if (!nodeInterop && obj && obj.__esModule) {
-    return obj;
-  }
-  if (
-    obj === null ||
-    (_typeof3(obj) !== "object" && typeof obj !== "function")
-  ) {
-    return { default: obj };
-  }
-  var cache = _getRequireWildcardCache(nodeInterop);
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-  var newObj = {};
-  var hasPropertyDescriptor =
-    Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var key in obj) {
-    if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor
-        ? Object.getOwnPropertyDescriptor(obj, key)
-        : null;
-      if (desc && (desc.get || desc.set)) {
-        Object.defineProperty(newObj, key, desc);
-      } else {
-        newObj[key] = obj[key];
-      }
+function _interopRequireWildcard(e, r) {
+  if (!r && e && e.__esModule) return e;
+  if (null === e || ("object" != _typeof3(e) && "function" != typeof e))
+    return { default: e };
+  var t = _getRequireWildcardCache(r);
+  if (t && t.has(e)) return t.get(e);
+  var n = { __proto__: null },
+    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+  for (var u in e)
+    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
+      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
     }
-  }
-  newObj["default"] = obj;
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-  return newObj;
+  return (n["default"] = e), t && t.set(e, n), n;
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = (0, _getPrototypeOf2["default"])(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return (0, _possibleConstructorReturn2["default"])(this, result);
-  };
+function _callSuper(t, o, e) {
+  return (
+    (o = (0, _getPrototypeOf2["default"])(o)),
+    (0, _possibleConstructorReturn2["default"])(
+      t,
+      _isNativeReflectConstruct()
+        ? Reflect.construct(
+            o,
+            e || [],
+            (0, _getPrototypeOf2["default"])(t).constructor
+          )
+        : o.apply(t, e)
+    )
+  );
 }
 function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
   try {
-    Boolean.prototype.valueOf.call(
+    var t = !Boolean.prototype.valueOf.call(
       Reflect.construct(Boolean, [], function () {})
     );
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-/* eslint-enable no-unused-vars */ var MaterialTable = /*#__PURE__*/ (function (
+  } catch (t) {}
+  return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
+    return !!t;
+  })();
+} /* eslint-disable no-unused-vars */
+/* eslint-enable no-unused-vars */
+var MaterialTable = (exports["default"] = /*#__PURE__*/ (function (
   _React$Component
 ) {
-  (0, _inherits2["default"])(MaterialTable, _React$Component);
-  var _super = _createSuper(MaterialTable);
   function MaterialTable(_props) {
     var _this;
     (0, _classCallCheck2["default"])(this, MaterialTable);
-    _this = _super.call(this, _props);
+    _this = _callSuper(this, MaterialTable, [_props]);
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "dataManager",
       new _dataManager["default"]()
     );
+    (0, _defineProperty2["default"])(_this, "isRemoteData", function (props) {
+      return !Array.isArray((props || _this.props).data);
+    });
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "isRemoteData",
-      function (props) {
-        return !Array.isArray((props || _this.props).data);
-      }
-    );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "isOutsidePageNumbers",
       function (props) {
         return props.page !== undefined && props.totalCount !== undefined;
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onAllSelected",
       function (checked) {
         _this.dataManager.changeAllSelected(checked);
@@ -167,7 +135,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onChangeColumnHidden",
       function (column, hidden) {
         _this.dataManager.changeColumnHidden(column, hidden);
@@ -178,7 +146,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onChangeGroupOrder",
       function (groupedColumn) {
         _this.dataManager.changeGroupOrder(groupedColumn.tableData.id);
@@ -186,7 +154,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onChangeOrder",
       function (orderBy, orderDirection) {
         var newOrderBy = orderDirection === "" ? -1 : orderBy;
@@ -211,7 +179,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onChangePage",
       function (event, page) {
         if (_this.isRemoteData()) {
@@ -233,7 +201,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onChangeRowsPerPage",
       function (event) {
         var pageSize = event.target.value;
@@ -256,28 +224,24 @@ function _isNativeReflectConstruct() {
         }
       }
     );
+    (0, _defineProperty2["default"])(_this, "onDragEnd", function (result) {
+      if (!result || !result.source || !result.destination) return;
+      _this.dataManager.changeByDrag(result);
+      _this.setState(_this.dataManager.getRenderState(), function () {
+        if (
+          _this.props.onColumnDragged &&
+          result.destination.droppableId === "headers" &&
+          result.source.droppableId === "headers"
+        ) {
+          _this.props.onColumnDragged(
+            result.source.index,
+            result.destination.index
+          );
+        }
+      });
+    });
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "onDragEnd",
-      function (result) {
-        if (!result || !result.source || !result.destination) return;
-        _this.dataManager.changeByDrag(result);
-        _this.setState(_this.dataManager.getRenderState(), function () {
-          if (
-            _this.props.onColumnDragged &&
-            result.destination.droppableId === "headers" &&
-            result.source.droppableId === "headers"
-          ) {
-            _this.props.onColumnDragged(
-              result.source.index,
-              result.destination.index
-            );
-          }
-        });
-      }
-    );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onGroupExpandChanged",
       function (path) {
         _this.dataManager.changeGroupExpand(path);
@@ -285,7 +249,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onGroupRemoved",
       function (groupedColumn, index) {
         var result = {
@@ -311,7 +275,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onEditingApproved",
       function (mode, newData, oldData) {
         if (
@@ -476,7 +440,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onEditingCanceled",
       function (mode, rowData) {
         if (mode === "add") {
@@ -496,15 +460,11 @@ function _isNativeReflectConstruct() {
         }
       }
     );
+    (0, _defineProperty2["default"])(_this, "retry", function () {
+      _this.onQueryChange(_this.state.query);
+    });
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "retry",
-      function () {
-        _this.onQueryChange(_this.state.query);
-      }
-    );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onQueryChange",
       function (query, callback) {
         query = (0, _objectSpread2["default"])({}, _this.state.query, query, {
@@ -568,7 +528,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onRowSelected",
       function (event, path, dataClicked) {
         _this.dataManager.changeRowSelected(event.target.checked, path);
@@ -578,7 +538,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onSelectionChange",
       function (dataClicked) {
         if (_this.props.onSelectionChange) {
@@ -596,7 +556,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onSearchChangeDebounce",
       (0, _debounce.debounce)(function (searchText) {
         if (_this.isRemoteData()) {
@@ -613,7 +573,7 @@ function _isNativeReflectConstruct() {
       }, _this.props.options.debounceInterval)
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onFilterChange",
       function (columnId, value) {
         _this.dataManager.changeFilterValue(columnId, value);
@@ -621,7 +581,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onFilterChangeDebounce",
       (0, _debounce.debounce)(function () {
         if (_this.isRemoteData()) {
@@ -660,7 +620,7 @@ function _isNativeReflectConstruct() {
       }, _this.props.options.debounceInterval)
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onTreeExpandChanged",
       function (path, data) {
         _this.dataManager.changeTreeExpand(path);
@@ -671,7 +631,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onToggleDetailPanel",
       function (path, render) {
         _this.dataManager.changeDetailPanelVisibility(path, render);
@@ -679,7 +639,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onCellEditStarted",
       function (rowData, columnDef) {
         _this.dataManager.startCellEditable(rowData, columnDef);
@@ -687,7 +647,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onCellEditFinished",
       function (rowData, columnDef) {
         _this.dataManager.finishCellEditable(rowData, columnDef);
@@ -695,7 +655,7 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onEditRowDataChanged",
       function (rowData, newData) {
         _this.dataManager.setEditRowData(rowData, newData);
@@ -703,118 +663,114 @@ function _isNativeReflectConstruct() {
       }
     );
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onColumnResized",
       function (id, additionalWidth) {
         _this.dataManager.onColumnResized(id, additionalWidth);
         _this.setState(_this.dataManager.getRenderState());
       }
     );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "renderTable",
-      function (props) {
-        return /*#__PURE__*/ React.createElement(
-          _Table["default"],
-          {
-            style: {
-              tableLayout:
-                props.options.fixedColumns &&
-                (props.options.fixedColumns.left ||
-                  props.options.fixedColumns.right)
-                  ? "fixed"
-                  : props.options.tableLayout,
-            },
+    (0, _defineProperty2["default"])(_this, "renderTable", function (props) {
+      return /*#__PURE__*/ React.createElement(
+        _Table["default"],
+        {
+          style: {
+            tableLayout:
+              props.options.fixedColumns &&
+              (props.options.fixedColumns.left ||
+                props.options.fixedColumns.right)
+                ? "fixed"
+                : props.options.tableLayout,
           },
-          props.options.header &&
-            /*#__PURE__*/ React.createElement(props.components.Header, {
-              actions: props.actions,
-              localization: (0, _objectSpread2["default"])(
-                {},
-                MaterialTable.defaultProps.localization.header,
-                _this.props.localization.header
-              ),
-              columns: _this.state.columns,
-              hasSelection: props.options.selection,
-              headerStyle: props.options.headerStyle,
-              icons: props.icons,
-              selectedCount: _this.state.selectedCount,
-              dataCount: props.parentChildData
-                ? _this.state.treefiedDataLength
-                : _this.state.columns.filter(function (col) {
-                    return col.tableData.groupOrder > -1;
-                  }).length > 0
-                ? _this.state.groupedDataLength
-                : _this.state.data.length,
-              hasDetailPanel: !!props.detailPanel,
-              detailPanelColumnAlignment:
-                props.options.detailPanelColumnAlignment,
-              showActionsColumn:
-                props.actions &&
-                props.actions.filter(function (a) {
-                  return a.position === "row" || typeof a === "function";
-                }).length > 0,
-              showSelectAllCheckbox: props.options.showSelectAllCheckbox,
-              orderBy: _this.state.orderBy,
-              orderDirection: _this.state.orderDirection,
-              onAllSelected: _this.onAllSelected,
-              onOrderChange: _this.onChangeOrder,
-              actionsHeaderIndex: props.options.actionsColumnIndex,
-              sorting: props.options.sorting,
-              grouping: props.options.grouping,
-              isTreeData: _this.props.parentChildData !== undefined,
-              draggable: props.options.draggable,
-              thirdSortClick: props.options.thirdSortClick,
-              treeDataMaxLevel: _this.state.treeDataMaxLevel,
-              options: props.options,
-              onColumnResized: _this.onColumnResized,
-              scrollWidth: _this.state.width,
-            }),
-          /*#__PURE__*/ React.createElement(props.components.Body, {
+        },
+        props.options.header &&
+          /*#__PURE__*/ React.createElement(props.components.Header, {
             actions: props.actions,
-            components: props.components,
-            icons: props.icons,
-            renderData: _this.state.renderData,
-            currentPage: _this.state.currentPage,
-            initialFormData: props.initialFormData,
-            pageSize: _this.state.pageSize,
-            columns: _this.state.columns,
-            errorState: _this.state.errorState,
-            detailPanel: props.detailPanel,
-            options: props.options,
-            getFieldValue: _this.dataManager.getFieldValue,
-            isTreeData: _this.props.parentChildData !== undefined,
-            onFilterChanged: _this.onFilterChange,
-            onRowSelected: _this.onRowSelected,
-            onToggleDetailPanel: _this.onToggleDetailPanel,
-            onGroupExpandChanged: _this.onGroupExpandChanged,
-            onTreeExpandChanged: _this.onTreeExpandChanged,
-            onEditingCanceled: _this.onEditingCanceled,
-            onEditingApproved: _this.onEditingApproved,
             localization: (0, _objectSpread2["default"])(
               {},
-              MaterialTable.defaultProps.localization.body,
-              _this.props.localization.body
+              MaterialTable.defaultProps.localization.header,
+              _this.props.localization.header
             ),
-            onRowClick: _this.props.onRowClick,
-            showAddRow: _this.state.showAddRow,
-            hasAnyEditingRow: !!(
-              _this.state.lastEditingRow || _this.state.showAddRow
-            ),
+            columns: _this.state.columns,
+            hasSelection: props.options.selection,
+            headerStyle: props.options.headerStyle,
+            icons: props.icons,
+            selectedCount: _this.state.selectedCount,
+            dataCount: props.parentChildData
+              ? _this.state.treefiedDataLength
+              : _this.state.columns.filter(function (col) {
+                  return col.tableData.groupOrder > -1;
+                }).length > 0
+              ? _this.state.groupedDataLength
+              : _this.state.data.length,
             hasDetailPanel: !!props.detailPanel,
+            detailPanelColumnAlignment:
+              props.options.detailPanelColumnAlignment,
+            showActionsColumn:
+              props.actions &&
+              props.actions.filter(function (a) {
+                return a.position === "row" || typeof a === "function";
+              }).length > 0,
+            showSelectAllCheckbox: props.options.showSelectAllCheckbox,
+            orderBy: _this.state.orderBy,
+            orderDirection: _this.state.orderDirection,
+            onAllSelected: _this.onAllSelected,
+            onOrderChange: _this.onChangeOrder,
+            actionsHeaderIndex: props.options.actionsColumnIndex,
+            sorting: props.options.sorting,
+            grouping: props.options.grouping,
+            isTreeData: _this.props.parentChildData !== undefined,
+            draggable: props.options.draggable,
+            thirdSortClick: props.options.thirdSortClick,
             treeDataMaxLevel: _this.state.treeDataMaxLevel,
-            cellEditable: props.cellEditable,
-            onCellEditStarted: _this.onCellEditStarted,
-            onCellEditFinished: _this.onCellEditFinished,
-            bulkEditOpen: _this.dataManager.bulkEditOpen,
-            onBulkEditRowChanged: _this.dataManager.onBulkEditRowChanged,
+            options: props.options,
+            onColumnResized: _this.onColumnResized,
             scrollWidth: _this.state.width,
-          })
-        );
-      }
-    );
+          }),
+        /*#__PURE__*/ React.createElement(props.components.Body, {
+          actions: props.actions,
+          components: props.components,
+          icons: props.icons,
+          renderData: _this.state.renderData,
+          currentPage: _this.state.currentPage,
+          initialFormData: props.initialFormData,
+          pageSize: _this.state.pageSize,
+          columns: _this.state.columns,
+          errorState: _this.state.errorState,
+          detailPanel: props.detailPanel,
+          options: props.options,
+          getFieldValue: _this.dataManager.getFieldValue,
+          isTreeData: _this.props.parentChildData !== undefined,
+          onFilterChanged: _this.onFilterChange,
+          onRowSelected: _this.onRowSelected,
+          onToggleDetailPanel: _this.onToggleDetailPanel,
+          onGroupExpandChanged: _this.onGroupExpandChanged,
+          onTreeExpandChanged: _this.onTreeExpandChanged,
+          onEditingCanceled: _this.onEditingCanceled,
+          onEditingApproved: _this.onEditingApproved,
+          localization: (0, _objectSpread2["default"])(
+            {},
+            MaterialTable.defaultProps.localization.body,
+            _this.props.localization.body
+          ),
+          onRowClick: _this.props.onRowClick,
+          showAddRow: _this.state.showAddRow,
+          hasAnyEditingRow: !!(
+            _this.state.lastEditingRow || _this.state.showAddRow
+          ),
+          hasDetailPanel: !!props.detailPanel,
+          treeDataMaxLevel: _this.state.treeDataMaxLevel,
+          cellEditable: props.cellEditable,
+          onCellEditStarted: _this.onCellEditStarted,
+          onCellEditFinished: _this.onCellEditFinished,
+          bulkEditOpen: _this.dataManager.bulkEditOpen,
+          onBulkEditRowChanged: _this.dataManager.onBulkEditRowChanged,
+          scrollWidth: _this.state.width,
+        })
+      );
+    });
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "getColumnsWidth",
       function (props, count) {
         var result = [];
@@ -896,7 +852,8 @@ function _isNativeReflectConstruct() {
     _this.tableContainerDiv = React.createRef();
     return _this;
   }
-  (0, _createClass2["default"])(MaterialTable, [
+  (0, _inherits2["default"])(MaterialTable, _React$Component);
+  return (0, _createClass2["default"])(MaterialTable, [
     {
       key: "componentDidMount",
       value: function componentDidMount() {
@@ -1605,9 +1562,7 @@ function _isNativeReflectConstruct() {
       },
     },
   ]);
-  return MaterialTable;
-})(React.Component);
-exports["default"] = MaterialTable;
+})(React.Component));
 var style = function style() {
   return {
     horizontalScrollContainer: {

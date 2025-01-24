@@ -18,17 +18,14 @@ var _classCallCheck2 = _interopRequireDefault(
 var _createClass2 = _interopRequireDefault(
   require("@babel/runtime/helpers/createClass")
 );
-var _assertThisInitialized2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/assertThisInitialized")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
 var _possibleConstructorReturn2 = _interopRequireDefault(
   require("@babel/runtime/helpers/possibleConstructorReturn")
 );
 var _getPrototypeOf2 = _interopRequireDefault(
   require("@babel/runtime/helpers/getPrototypeOf")
+);
+var _inherits2 = _interopRequireDefault(
+  require("@babel/runtime/helpers/inherits")
 );
 var _defineProperty2 = _interopRequireDefault(
   require("@babel/runtime/helpers/defineProperty")
@@ -60,89 +57,65 @@ var _filefy = require("filefy");
 var _propTypes = _interopRequireWildcard(require("prop-types"));
 require("jspdf-autotable");
 var React = _interopRequireWildcard(require("react"));
-function _getRequireWildcardCache(nodeInterop) {
-  if (typeof WeakMap !== "function") return null;
-  var cacheBabelInterop = new WeakMap();
-  var cacheNodeInterop = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(
-    nodeInterop
-  ) {
-    return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
-  })(nodeInterop);
+function _getRequireWildcardCache(e) {
+  if ("function" != typeof WeakMap) return null;
+  var r = new WeakMap(),
+    t = new WeakMap();
+  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+    return e ? t : r;
+  })(e);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
-  if (!nodeInterop && obj && obj.__esModule) {
-    return obj;
-  }
-  if (
-    obj === null ||
-    (_typeof(obj) !== "object" && typeof obj !== "function")
-  ) {
-    return { default: obj };
-  }
-  var cache = _getRequireWildcardCache(nodeInterop);
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-  var newObj = {};
-  var hasPropertyDescriptor =
-    Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var key in obj) {
-    if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor
-        ? Object.getOwnPropertyDescriptor(obj, key)
-        : null;
-      if (desc && (desc.get || desc.set)) {
-        Object.defineProperty(newObj, key, desc);
-      } else {
-        newObj[key] = obj[key];
-      }
+function _interopRequireWildcard(e, r) {
+  if (!r && e && e.__esModule) return e;
+  if (null === e || ("object" != _typeof(e) && "function" != typeof e))
+    return { default: e };
+  var t = _getRequireWildcardCache(r);
+  if (t && t.has(e)) return t.get(e);
+  var n = { __proto__: null },
+    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+  for (var u in e)
+    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
+      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
     }
-  }
-  newObj["default"] = obj;
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-  return newObj;
+  return (n["default"] = e), t && t.set(e, n), n;
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = (0, _getPrototypeOf2["default"])(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return (0, _possibleConstructorReturn2["default"])(this, result);
-  };
+function _callSuper(t, o, e) {
+  return (
+    (o = (0, _getPrototypeOf2["default"])(o)),
+    (0, _possibleConstructorReturn2["default"])(
+      t,
+      _isNativeReflectConstruct()
+        ? Reflect.construct(
+            o,
+            e || [],
+            (0, _getPrototypeOf2["default"])(t).constructor
+          )
+        : o.apply(t, e)
+    )
+  );
 }
 function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
   try {
-    Boolean.prototype.valueOf.call(
+    var t = !Boolean.prototype.valueOf.call(
       Reflect.construct(Boolean, [], function () {})
     );
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
+  } catch (t) {}
+  return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
+    return !!t;
+  })();
+} /* eslint-disable no-unused-vars */
 var jsPDF = typeof window !== "undefined" ? require("jspdf").jsPDF : null;
 /* eslint-enable no-unused-vars */
-var MTableToolbar = /*#__PURE__*/ (function (_React$Component) {
-  (0, _inherits2["default"])(MTableToolbar, _React$Component);
-  var _super = _createSuper(MTableToolbar);
+var MTableToolbar = (exports.MTableToolbar = /*#__PURE__*/ (function (
+  _React$Component
+) {
   function MTableToolbar(props) {
     var _this;
     (0, _classCallCheck2["default"])(this, MTableToolbar);
-    _this = _super.call(this, props);
+    _this = _callSuper(this, MTableToolbar, [props]);
     (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
+      _this,
       "onSearchChange",
       function (searchText) {
         _this.props.dataManager.changeSearchText(searchText);
@@ -154,123 +127,103 @@ var MTableToolbar = /*#__PURE__*/ (function (_React$Component) {
         );
       }
     );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "getTableData",
-      function () {
-        var columns = _this.props.columns
-          .filter(function (columnDef) {
-            return (
-              (!columnDef.hidden || columnDef["export"] === true) &&
-              columnDef["export"] !== false &&
-              columnDef.field
-            );
-          })
-          .sort(function (a, b) {
-            return a.tableData.columnOrder > b.tableData.columnOrder ? 1 : -1;
-          });
-        var data = (
-          _this.props.exportAllData ? _this.props.data : _this.props.renderData
-        ).map(function (rowData) {
-          return columns.map(function (columnDef) {
-            return _this.props.getFieldValue(rowData, columnDef);
-          });
+    (0, _defineProperty2["default"])(_this, "getTableData", function () {
+      var columns = _this.props.columns
+        .filter(function (columnDef) {
+          return (
+            (!columnDef.hidden || columnDef["export"] === true) &&
+            columnDef["export"] !== false &&
+            columnDef.field
+          );
+        })
+        .sort(function (a, b) {
+          return a.tableData.columnOrder > b.tableData.columnOrder ? 1 : -1;
         });
-        return [columns, data];
+      var data = (
+        _this.props.exportAllData ? _this.props.data : _this.props.renderData
+      ).map(function (rowData) {
+        return columns.map(function (columnDef) {
+          return _this.props.getFieldValue(rowData, columnDef);
+        });
+      });
+      return [columns, data];
+    });
+    (0, _defineProperty2["default"])(_this, "defaultExportCsv", function () {
+      var _this$getTableData = _this.getTableData(),
+        _this$getTableData2 = (0, _slicedToArray2["default"])(
+          _this$getTableData,
+          2
+        ),
+        columns = _this$getTableData2[0],
+        data = _this$getTableData2[1];
+      var fileName = _this.props.title || "data";
+      if (_this.props.exportFileName) {
+        fileName =
+          typeof _this.props.exportFileName === "function"
+            ? _this.props.exportFileName()
+            : _this.props.exportFileName;
       }
-    );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "defaultExportCsv",
-      function () {
-        var _this$getTableData = _this.getTableData(),
-          _this$getTableData2 = (0, _slicedToArray2["default"])(
-            _this$getTableData,
+      var builder = new _filefy.CsvBuilder(fileName + ".csv");
+      builder
+        .setDelimeter(_this.props.exportDelimiter)
+        .setColumns(
+          columns.map(function (columnDef) {
+            return columnDef.title;
+          })
+        )
+        .addRows(data)
+        .exportFile();
+    });
+    (0, _defineProperty2["default"])(_this, "defaultExportPdf", function () {
+      if (jsPDF !== null) {
+        var _this$getTableData3 = _this.getTableData(),
+          _this$getTableData4 = (0, _slicedToArray2["default"])(
+            _this$getTableData3,
             2
           ),
-          columns = _this$getTableData2[0],
-          data = _this$getTableData2[1];
-        var fileName = _this.props.title || "data";
-        if (_this.props.exportFileName) {
-          fileName =
-            typeof _this.props.exportFileName === "function"
-              ? _this.props.exportFileName()
-              : _this.props.exportFileName;
-        }
-        var builder = new _filefy.CsvBuilder(fileName + ".csv");
-        builder
-          .setDelimeter(_this.props.exportDelimiter)
-          .setColumns(
+          columns = _this$getTableData4[0],
+          data = _this$getTableData4[1];
+        var content = {
+          startY: 50,
+          head: [
             columns.map(function (columnDef) {
               return columnDef.title;
-            })
-          )
-          .addRows(data)
-          .exportFile();
+            }),
+          ],
+          body: data,
+        };
+        var unit = "pt";
+        var size = "A4";
+        var orientation = "landscape";
+        var doc = new jsPDF(orientation, unit, size);
+        doc.setFontSize(15);
+        doc.text(_this.props.exportFileName || _this.props.title, 40, 40);
+        doc.autoTable(content);
+        doc.save(
+          (_this.props.exportFileName || _this.props.title || "data") + ".pdf"
+        );
       }
-    );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "defaultExportPdf",
-      function () {
-        if (jsPDF !== null) {
-          var _this$getTableData3 = _this.getTableData(),
-            _this$getTableData4 = (0, _slicedToArray2["default"])(
-              _this$getTableData3,
-              2
-            ),
-            columns = _this$getTableData4[0],
-            data = _this$getTableData4[1];
-          var content = {
-            startY: 50,
-            head: [
-              columns.map(function (columnDef) {
-                return columnDef.title;
-              }),
-            ],
-            body: data,
-          };
-          var unit = "pt";
-          var size = "A4";
-          var orientation = "landscape";
-          var doc = new jsPDF(orientation, unit, size);
-          doc.setFontSize(15);
-          doc.text(_this.props.exportFileName || _this.props.title, 40, 40);
-          doc.autoTable(content);
-          doc.save(
-            (_this.props.exportFileName || _this.props.title || "data") + ".pdf"
-          );
-        }
+    });
+    (0, _defineProperty2["default"])(_this, "exportCsv", function () {
+      if (_this.props.exportCsv) {
+        _this.props.exportCsv(_this.props.columns, _this.props.data);
+      } else {
+        _this.defaultExportCsv();
       }
-    );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "exportCsv",
-      function () {
-        if (_this.props.exportCsv) {
-          _this.props.exportCsv(_this.props.columns, _this.props.data);
-        } else {
-          _this.defaultExportCsv();
-        }
-        _this.setState({
-          exportButtonAnchorEl: null,
-        });
+      _this.setState({
+        exportButtonAnchorEl: null,
+      });
+    });
+    (0, _defineProperty2["default"])(_this, "exportPdf", function () {
+      if (_this.props.exportPdf) {
+        _this.props.exportPdf(_this.props.columns, _this.props.data);
+      } else {
+        _this.defaultExportPdf();
       }
-    );
-    (0, _defineProperty2["default"])(
-      (0, _assertThisInitialized2["default"])(_this),
-      "exportPdf",
-      function () {
-        if (_this.props.exportPdf) {
-          _this.props.exportPdf(_this.props.columns, _this.props.data);
-        } else {
-          _this.defaultExportPdf();
-        }
-        _this.setState({
-          exportButtonAnchorEl: null,
-        });
-      }
-    );
+      _this.setState({
+        exportButtonAnchorEl: null,
+      });
+    });
     _this.state = {
       columnsButtonAnchorEl: null,
       exportButtonAnchorEl: null,
@@ -278,7 +231,8 @@ var MTableToolbar = /*#__PURE__*/ (function (_React$Component) {
     };
     return _this;
   }
-  (0, _createClass2["default"])(MTableToolbar, [
+  (0, _inherits2["default"])(MTableToolbar, _React$Component);
+  return (0, _createClass2["default"])(MTableToolbar, [
     {
       key: "renderSearch",
       value: function renderSearch() {
@@ -640,9 +594,7 @@ var MTableToolbar = /*#__PURE__*/ (function (_React$Component) {
       },
     },
   ]);
-  return MTableToolbar;
-})(React.Component);
-exports.MTableToolbar = MTableToolbar;
+})(React.Component));
 MTableToolbar.defaultProps = {
   actions: [],
   columns: [],
@@ -715,7 +667,7 @@ MTableToolbar.propTypes = {
   classes: _propTypes["default"].object,
   searchAutoFocus: _propTypes["default"].bool,
 };
-var styles = function styles(theme) {
+var styles = (exports.styles = function styles(theme) {
   return {
     root: {
       paddingRight: theme.spacing(1),
@@ -751,7 +703,7 @@ var styles = function styles(theme) {
       paddingRight: theme.spacing(1),
     },
   };
-};
-exports.styles = styles;
-var _default = (0, _withStyles["default"])(styles)(MTableToolbar);
-exports["default"] = _default;
+});
+var _default = (exports["default"] = (0, _withStyles["default"])(styles)(
+  MTableToolbar
+));

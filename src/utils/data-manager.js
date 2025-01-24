@@ -1,5 +1,5 @@
 import formatDate from "date-fns/format";
-import { byString } from "./";
+import { byString } from ".";
 
 export default class DataManager {
   applyFilters = false;
