@@ -216,6 +216,8 @@ export interface Column<RowData extends object> {
     | "time"
     | "currency";
   width?: string | number;
+  /** select text value on focus */
+  selectOnFocus?: boolean;
 }
 
 export interface Components {
