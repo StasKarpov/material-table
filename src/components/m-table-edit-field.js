@@ -15,6 +15,7 @@ import {
   DateTimePicker,
 } from "@material-ui/pickers";
 import PropTypes from "prop-types";
+import { Box } from "@material-ui/core";
 
 class MTableEditField extends React.Component {
   getProps() {
@@ -227,10 +228,98 @@ class MTableEditField extends React.Component {
     );
   }
 
+  renderArrayLookupField() {
+    const { helperText, error, ...props } = this.getProps();
+    return (
+      <Box display="flex" flexDirection="column">
+        {this.props.value.map((value, index) => (
+          <FormControl error={Boolean(error)}>
+            <Select
+              {...props}
+              value={value === undefined ? "" : value}
+              onChange={(event) =>
+                this.props.onChange(
+                  this.props.value.map((v, i) =>
+                    i == index ? event.target.value : v
+                  )
+                )
+              }
+              style={{
+                fontSize: 13,
+              }}
+              SelectDisplayProps={{ "aria-label": this.props.columnDef.title }}
+            >
+              {Object.keys(this.props.columnDef.lookup).map((key) => (
+                <MenuItem key={key} value={key}>
+                  {this.props.columnDef.lookup[key]}
+                </MenuItem>
+              ))}
+            </Select>
+            {Boolean(helperText) && (
+              <FormHelperText>{helperText}</FormHelperText>
+            )}
+          </FormControl>
+        ))}
+      </Box>
+    );
+  }
+
+  renderArrayTextField() {
+    const thisProps = this.getProps();
+
+    return thisProps.value.map((value, index) => (
+      <TextField
+        {...thisProps}
+        key={index}
+        fullWidth
+        style={
+          this.props.columnDef.type === "numeric" ? { float: "right" } : {}
+        }
+        type={this.props.columnDef.type === "numeric" ? "number" : "text"}
+        placeholder={
+          this.props.columnDef.editPlaceholder || this.props.columnDef.title
+        }
+        value={value === undefined ? "" : value}
+        onChange={(event) => {
+          const newValue =
+            this.props.columnDef.type === "numeric"
+              ? event.target.valueAsNumber
+              : event.target.value;
+
+          const newArray = thisProps.value.map((v, i) =>
+            i === index ? newValue : v
+          );
+          this.props.onChange(newArray);
+        }}
+        InputProps={{
+          style: {
+            fontSize: 13,
+          },
+          inputProps: {
+            "aria-label": this.props.columnDef.title,
+            ...thisProps.inputProps,
+          },
+          onFocus: ({ target }) => {
+            if (
+              this.props.columnDef.selectOnFocus &&
+              target.tagName === "INPUT"
+            ) {
+              target.select();
+            }
+          },
+        }}
+      />
+    ));
+  }
+
   render() {
     let component = "ok";
 
-    if (this.props.columnDef.lookup) {
+    if (Array.isArray(this.props.value) && this.props.columnDef.lookup) {
+      component = this.renderArrayLookupField();
+    } else if (Array.isArray(this.props.value)) {
+      component = this.renderArrayTextField();
+    } else if (this.props.columnDef.lookup) {
       component = this.renderLookupField();
     } else if (this.props.columnDef.type === "boolean") {
       component = this.renderBooleanField();

@@ -320,6 +320,29 @@ var MTableCell = (exports["default"] = /*#__PURE__*/ (function (
             renderValue
           );
         }
+        console.log("column def", this.props.columnDef.field);
+        console.log("renderValue", renderValue);
+        console.log("renderValue isArray", Array.isArray(renderValue));
+        if (Array.isArray(renderValue)) {
+          return /*#__PURE__*/ React.createElement(
+            _TableCell["default"],
+            (0, _extends2["default"])(
+              {
+                size: this.props.size,
+              },
+              cellProps,
+              {
+                style: this.getStyle(),
+                align: cellAlignment,
+                onClick: this.handleClickCell,
+              }
+            ),
+            this.props.children,
+            renderValue.map(function (v, index) {
+              return /*#__PURE__*/ React.createElement("div", null, v);
+            })
+          );
+        }
         return /*#__PURE__*/ React.createElement(
           _TableCell["default"],
           (0, _extends2["default"])(

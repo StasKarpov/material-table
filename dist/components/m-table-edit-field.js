@@ -48,6 +48,7 @@ var _FormControlLabel = _interopRequireDefault(
 var _dateFns = _interopRequireDefault(require("@date-io/date-fns"));
 var _pickers = require("@material-ui/pickers");
 var _propTypes = _interopRequireDefault(require("prop-types"));
+var _core = require("@material-ui/core");
 var _excluded = [
     "columnDef",
     "rowData",
@@ -56,7 +57,8 @@ var _excluded = [
     "onBulkEditRowChanged",
   ],
   _excluded2 = ["helperText", "error"],
-  _excluded3 = ["helperText", "error"];
+  _excluded3 = ["helperText", "error"],
+  _excluded4 = ["helperText", "error"];
 function _getRequireWildcardCache(e) {
   if ("function" != typeof WeakMap) return null;
   var r = new WeakMap(),
@@ -416,10 +418,135 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
       },
     },
     {
+      key: "renderArrayLookupField",
+      value: function renderArrayLookupField() {
+        var _this5 = this;
+        var _this$getProps3 = this.getProps(),
+          helperText = _this$getProps3.helperText,
+          error = _this$getProps3.error,
+          props = (0, _objectWithoutProperties2["default"])(
+            _this$getProps3,
+            _excluded4
+          );
+        return /*#__PURE__*/ React.createElement(
+          _core.Box,
+          {
+            display: "flex",
+            flexDirection: "column",
+          },
+          this.props.value.map(function (value, index) {
+            return /*#__PURE__*/ React.createElement(
+              _FormControl["default"],
+              {
+                error: Boolean(error),
+              },
+              /*#__PURE__*/ React.createElement(
+                _Select["default"],
+                (0, _extends2["default"])({}, props, {
+                  value: value === undefined ? "" : value,
+                  onChange: function onChange(event) {
+                    return _this5.props.onChange(
+                      _this5.props.value.map(function (v, i) {
+                        return i == index ? event.target.value : v;
+                      })
+                    );
+                  },
+                  style: {
+                    fontSize: 13,
+                  },
+                  SelectDisplayProps: {
+                    "aria-label": _this5.props.columnDef.title,
+                  },
+                }),
+                Object.keys(_this5.props.columnDef.lookup).map(function (key) {
+                  return /*#__PURE__*/ React.createElement(
+                    _MenuItem["default"],
+                    {
+                      key: key,
+                      value: key,
+                    },
+                    _this5.props.columnDef.lookup[key]
+                  );
+                })
+              ),
+              Boolean(helperText) &&
+                /*#__PURE__*/ React.createElement(
+                  _FormHelperText["default"],
+                  null,
+                  helperText
+                )
+            );
+          })
+        );
+      },
+    },
+    {
+      key: "renderArrayTextField",
+      value: function renderArrayTextField() {
+        var _this6 = this;
+        var thisProps = this.getProps();
+        return thisProps.value.map(function (value, index) {
+          return /*#__PURE__*/ React.createElement(
+            _TextField["default"],
+            (0, _extends2["default"])({}, thisProps, {
+              key: index,
+              fullWidth: true,
+              style:
+                _this6.props.columnDef.type === "numeric"
+                  ? {
+                      float: "right",
+                    }
+                  : {},
+              type:
+                _this6.props.columnDef.type === "numeric" ? "number" : "text",
+              placeholder:
+                _this6.props.columnDef.editPlaceholder ||
+                _this6.props.columnDef.title,
+              value: value === undefined ? "" : value,
+              onChange: function onChange(event) {
+                var newValue =
+                  _this6.props.columnDef.type === "numeric"
+                    ? event.target.valueAsNumber
+                    : event.target.value;
+                var newArray = thisProps.value.map(function (v, i) {
+                  return i === index ? newValue : v;
+                });
+                _this6.props.onChange(newArray);
+              },
+              InputProps: {
+                style: {
+                  fontSize: 13,
+                },
+                inputProps: (0, _objectSpread2["default"])(
+                  {
+                    "aria-label": _this6.props.columnDef.title,
+                  },
+                  thisProps.inputProps
+                ),
+                onFocus: function onFocus(_ref2) {
+                  var target = _ref2.target;
+                  if (
+                    _this6.props.columnDef.selectOnFocus &&
+                    target.tagName === "INPUT"
+                  ) {
+                    target.select();
+                  }
+                },
+              },
+            })
+          );
+        });
+      },
+    },
+    {
       key: "render",
       value: function render() {
         var component = "ok";
-        if (this.props.columnDef.lookup) {
+        if (Array.isArray(this.props.value) && this.props.columnDef.lookup) {
+          component = this.renderArrayLookupField();
+        } else if (Array.isArray(this.props.value)) {
+          component = this.renderArrayTextField();
+        } else if (this.props.columnDef.lookup) {
           component = this.renderLookupField();
         } else if (this.props.columnDef.type === "boolean") {
           component = this.renderBooleanField();

@@ -8,7 +8,8 @@ import * as CommonValues from "../utils/common-values";
 /* eslint-enable no-unused-vars */
 
 /* eslint-disable no-useless-escape */
-const isoDateRegex = /^\d{4}-(0[1-9]|1[0-2])-([12]\d|0[1-9]|3[01])([T\s](([01]\d|2[0-3])\:[0-5]\d|24\:00)(\:[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3])\:?([0-5]\d)?)?)?$/;
+const isoDateRegex =
+  /^\d{4}-(0[1-9]|1[0-2])-([12]\d|0[1-9]|3[01])([T\s](([01]\d|2[0-3])\:[0-5]\d|24\:00)(\:[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3])\:?([0-5]\d)?)?)?$/;
 /* eslint-enable no-useless-escape */
 
 export default class MTableCell extends React.Component {
@@ -18,6 +19,7 @@ export default class MTableCell extends React.Component {
       this.props.columnDef.dateSetting.locale
         ? this.props.columnDef.dateSetting.locale
         : undefined;
+
     if (
       this.props.columnDef.emptyValue !== undefined &&
       (this.props.value === undefined || this.props.value === null)
@@ -167,6 +169,7 @@ export default class MTableCell extends React.Component {
         : "left";
 
     let renderValue = this.getRenderValue();
+
     if (cellEditable) {
       renderValue = (
         <div
@@ -182,6 +185,27 @@ export default class MTableCell extends React.Component {
         >
           {renderValue}
         </div>
+      );
+    }
+
+    console.log("column def", this.props.columnDef.field);
+    console.log("renderValue", renderValue);
+    console.log("renderValue isArray", Array.isArray(renderValue));
+
+    if (Array.isArray(renderValue)) {
+      return (
+        <TableCell
+          size={this.props.size}
+          {...cellProps}
+          style={this.getStyle()}
+          align={cellAlignment}
+          onClick={this.handleClickCell}
+        >
+          {this.props.children}
+          {renderValue.map((v, index) => (
+            <div>{v}</div>
+          ))}
+        </TableCell>
       );
     }
 
