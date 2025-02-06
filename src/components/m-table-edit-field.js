@@ -233,7 +233,7 @@ class MTableEditField extends React.Component {
     return (
       <Box display="flex" flexDirection="column">
         {this.props.value.map((value, index) => (
-          <FormControl error={Boolean(error)}>
+          <FormControl key={index} error={Boolean(error)}>
             <Select
               {...props}
               value={value === undefined ? "" : value}

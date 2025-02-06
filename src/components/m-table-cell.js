@@ -188,10 +188,6 @@ export default class MTableCell extends React.Component {
       );
     }
 
-    console.log("column def", this.props.columnDef.field);
-    console.log("renderValue", renderValue);
-    console.log("renderValue isArray", Array.isArray(renderValue));
-
     if (Array.isArray(renderValue)) {
       return (
         <TableCell
@@ -203,7 +199,7 @@ export default class MTableCell extends React.Component {
         >
           {this.props.children}
           {renderValue.map((v, index) => (
-            <div>{v}</div>
+            <div key={index}>{v}</div>
           ))}
         </TableCell>
       );
