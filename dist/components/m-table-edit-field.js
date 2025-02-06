@@ -438,6 +438,7 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
             return /*#__PURE__*/ React.createElement(
               _FormControl["default"],
               {
+                key: index,
                 error: Boolean(error),
               },
               /*#__PURE__*/ React.createElement(
