@@ -49,6 +49,7 @@ var _dateFns = _interopRequireDefault(require("@date-io/date-fns"));
 var _pickers = require("@material-ui/pickers");
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _core = require("@material-ui/core");
+var _dateFns2 = require("date-fns");
 var _excluded = [
     "columnDef",
     "rowData",
@@ -336,6 +337,9 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
       value: function renderTextField() {
         var _this3 = this;
         var thisProps = this.getProps();
+        var inputStyle = {
+          minWidth: "50px",
+        };
         return /*#__PURE__*/ React.createElement(
           _TextField["default"],
           (0, _extends2["default"])({}, thisProps, {
@@ -359,9 +363,12 @@ var MTableEditField = /*#__PURE__*/ (function (_React$Component) {
               );
             },
             InputProps: {
-              style: {
-                fontSize: 13,
-              },
+              style: (0, _objectSpread2["default"])(
+                {
+                  fontSize: 13,
+                },
+                inputStyle
+              ),
               inputProps: (0, _objectSpread2["default"])(
                 {
                   "aria-label": this.props.columnDef.title,

@@ -158,6 +158,9 @@ class MTableEditField extends React.Component {
 
   renderTextField() {
     const thisProps = this.getProps();
+    const inputStyle = {
+      minWidth: "50px",
+    };
     return (
       <TextField
         {...thisProps}
@@ -180,6 +183,7 @@ class MTableEditField extends React.Component {
         InputProps={{
           style: {
             fontSize: 13,
+            ...inputStyle,
           },
           inputProps: {
             "aria-label": this.props.columnDef.title,
